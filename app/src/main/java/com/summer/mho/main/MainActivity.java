@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -17,7 +18,6 @@ import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.summer.mho.R;
 import com.summer.mho.base.BaseActivity;
 import com.summer.mho.models.equipment.EquipmentModel;
@@ -28,7 +28,7 @@ import com.summer.mho.utils.DBHelper;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements OnClickListener{
 
 
     // 近战,默认选中
@@ -131,6 +131,11 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initView() {
+        checkBox1.setOnClickListener(this);
+        checkBox2.setOnClickListener(this);
+        checkbox_skill_2.setOnClickListener(this);
+
+
         // 近战/远程初始化
         checkBox1.setChecked(true);
         checkBox2.setChecked(false);
@@ -285,7 +290,7 @@ public class MainActivity extends BaseActivity {
         final EditText jewelryNumberEditText = (EditText) view.findViewById(R.id.pop_edittext);
 
         Button ok = (Button) view.findViewById(R.id.ok);
-        ok.setOnClickListener(new View.OnClickListener() {
+        ok.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 jewelryInfo.put(jewelryPK, Integer.valueOf(jewelryNumberEditText.getText().toString()));
@@ -294,7 +299,7 @@ public class MainActivity extends BaseActivity {
             }
         });
         Button cancel = (Button) view.findViewById(R.id.cancel);
-        cancel.setOnClickListener(new View.OnClickListener() {
+        cancel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 popupWindow.dismiss();
@@ -328,8 +333,8 @@ public class MainActivity extends BaseActivity {
      *
      * @param view
      */
-    @OnClick({R.id.checkBox1, R.id.checkBox2, R.id.checkbox_skill_2})
-    private void checkBoxClick(View view) {
+    @Override
+    public void onClick(View view) {
         clearData();
         switch (view.getId()) {
             case R.id.checkBox1:
@@ -576,4 +581,6 @@ public class MainActivity extends BaseActivity {
     public void onBackPressed() {
         BaseActivity.exitApp(this);
     }
+
+
 }
