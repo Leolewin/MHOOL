@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.5"
+        android:background="@android:color/darker_gray"></RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="50px"
+        android:background="@android:color/white">
+
+        <TextView
+            android:id="@+id/pop_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="200px"
+            android:layout_marginLeft="100px"
+            android:gravity="center"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/pop_edittext"
+            android:layout_width="300px"
+            android:layout_height="200px"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="100px"
+            android:gravity="center"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:text="0" />
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pop_textView"
+            android:layout_marginLeft="100px"
+            android:layout_marginTop="100px"
+            android:text="确定" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/pop_edittext"
+            android:layout_marginRight="100px"
+            android:layout_marginTop="100px"
+            android:text="取消" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
