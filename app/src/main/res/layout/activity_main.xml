@@ -117,7 +117,8 @@
                         android:id="@+id/thorax"
                         android:layout_width="400px"
                         android:layout_height="150px"
-                        android:layout_alignParentRight="true" />
+                        android:layout_alignParentRight="true"
+                        android:spinnerMode="dialog"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -137,7 +138,8 @@
                         android:id="@+id/wrist"
                         android:layout_width="400px"
                         android:layout_height="150px"
-                        android:layout_alignParentRight="true" />
+                        android:layout_alignParentRight="true"
+                        android:spinnerMode="dialog"/>
                 </RelativeLayout>
 
 
@@ -159,7 +161,8 @@
                         android:id="@+id/waist"
                         android:layout_width="400px"
                         android:layout_height="150px"
-                        android:layout_alignParentRight="true" />
+                        android:layout_alignParentRight="true"
+                        android:spinnerMode="dialog"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -179,7 +182,8 @@
                         android:id="@+id/leg"
                         android:layout_width="400px"
                         android:layout_height="150px"
-                        android:layout_alignParentRight="true" />
+                        android:layout_alignParentRight="true"
+                        android:spinnerMode="dialog"/>
                 </RelativeLayout>
 
 
@@ -195,13 +199,14 @@
                         android:layout_width="100px"
                         android:layout_height="150px"
                         android:gravity="center"
-                        android:text="护石" />
+                        android:text="护" />
 
                     <Spinner
                         android:id="@+id/jewelry"
                         android:layout_width="400px"
                         android:layout_height="150px"
-                        android:layout_alignParentRight="true" />
+                        android:layout_alignParentRight="true"
+                        android:spinnerMode="dialog"/>
                 </RelativeLayout>
             </RelativeLayout>
 

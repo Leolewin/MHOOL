@@ -63,6 +63,6 @@
         android:id="@+id/text10"
         android:layout_width="330px"
         android:layout_height="100px"
-        android:gravity="center"
+        android:gravity="left|center_vertical"
         android:text="发动"/>
 </LinearLayout>

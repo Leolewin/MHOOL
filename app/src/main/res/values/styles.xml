@@ -13,7 +13,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="TextStyle">
+    <style name="MyTextStyle">
         <item name="android:textSize">@dimen/spinner_text_size</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_marginLeft">20px</item>

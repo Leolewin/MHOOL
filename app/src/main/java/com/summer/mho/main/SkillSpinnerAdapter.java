@@ -5,8 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckedTextView;
+import android.widget.TextView;
 
+import com.summer.mho.R;
 import com.summer.mho.models.skill.SkillModel;
 
 import java.util.ArrayList;
@@ -52,21 +53,21 @@ public class SkillSpinnerAdapter extends BaseAdapter {
 
         if (null == convertView) {
 
-            convertView = LayoutInflater.from(context).inflate(android.R.layout.simple_spinner_dropdown_item, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.spinner_item_layout, null);
             viewHolder = new ViewHolder();
-            viewHolder.checkedTextView = (CheckedTextView) convertView.findViewById(android.R.id.text1);
+            viewHolder.textView = (TextView) convertView.findViewById(R.id.text);
             convertView.setTag(viewHolder);
 
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.checkedTextView.setText(skillModelArrayList.get(position).getNAME());
+        viewHolder.textView.setText(skillModelArrayList.get(position).getNAME());
 
         return convertView;
     }
 
     private static class ViewHolder {
-        private CheckedTextView checkedTextView;
+        private TextView textView;
     }
 }

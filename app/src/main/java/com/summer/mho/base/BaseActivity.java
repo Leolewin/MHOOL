@@ -6,9 +6,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 
 import com.summer.mho.R;
+import com.zhy.autolayout.AutoLayoutActivity;
 
 import java.util.Stack;
 
@@ -20,7 +20,7 @@ import java.util.Stack;
  * 类描述
  * 所属类     {@link }
  */
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AutoLayoutActivity {
 
     private static Stack<Activity> stack;
 
