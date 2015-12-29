@@ -24,6 +24,8 @@ import com.summer.mho.models.equipment.EquipmentModel;
 import com.summer.mho.models.skill.Result;
 import com.summer.mho.models.skill.SkillModel;
 import com.summer.mho.utils.DBHelper;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.message.PushAgent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -113,11 +115,24 @@ public class MainActivity extends BaseActivity implements OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        PushAgent.getInstance(this).onAppStart();
+
         ViewUtils.inject(this);
 
         skillsSelected();
         initView();
 
+    }
+
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     /**
@@ -582,5 +597,8 @@ public class MainActivity extends BaseActivity implements OnClickListener{
         BaseActivity.exitApp(this);
     }
 
+
+
+    // 广告相关
 
 }

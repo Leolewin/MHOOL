@@ -232,10 +232,4 @@
         </RelativeLayout>
     </ScrollView>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="200px"
-        android:layout_alignParentBottom="true"
-        android:background="@android:color/holo_blue_light"></View>
-
 </RelativeLayout>

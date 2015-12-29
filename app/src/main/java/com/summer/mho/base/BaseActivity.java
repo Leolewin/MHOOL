@@ -6,8 +6,11 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 
 import com.summer.mho.R;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.message.PushAgent;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import java.util.Stack;
@@ -27,6 +30,15 @@ public class BaseActivity extends AutoLayoutActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // 友盟推送
+        PushAgent mPushAgent = PushAgent.getInstance(this);
+        mPushAgent.enable();
+
+        String deviceInfo =  getDeviceInfo(this);
+
+        // 友盟统计集成测试开关
+        MobclickAgent.setDebugMode(false);
 
         if (stack == null) {
             stack = new Stack<>();
@@ -80,4 +92,36 @@ public class BaseActivity extends AutoLayoutActivity {
                     }
                 }).show();
     }
+
+
+    public static String getDeviceInfo(Context context) {
+        try{
+            org.json.JSONObject json = new org.json.JSONObject();
+            android.telephony.TelephonyManager tm = (android.telephony.TelephonyManager) context
+                    .getSystemService(Context.TELEPHONY_SERVICE);
+
+            String device_id = tm.getDeviceId();
+
+            android.net.wifi.WifiManager wifi = (android.net.wifi.WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+
+            String mac = wifi.getConnectionInfo().getMacAddress();
+            json.put("mac", mac);
+
+            if( TextUtils.isEmpty(device_id) ){
+                device_id = mac;
+            }
+
+            if( TextUtils.isEmpty(device_id) ){
+                device_id = android.provider.Settings.Secure.getString(context.getContentResolver(),android.provider.Settings.Secure.ANDROID_ID);
+            }
+
+            json.put("device_id", device_id);
+
+            return json.toString();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
