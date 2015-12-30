@@ -102,3 +102,5 @@ public static final int *;
 -keep class org.android.agoo.service.* {*;}
 
 -keep class org.android.spdy.**{*;}
+
+-libraryjars libs/domob_android_sdk.jar

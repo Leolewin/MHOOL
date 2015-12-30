@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.summer.mho.application.MyApplication;
 import com.summer.mho.models.equipment.EquipmentModel;
+import com.summer.mho.models.gem.GemModel;
 import com.summer.mho.models.skill.Result;
 import com.summer.mho.models.skill.SkillModel;
 
@@ -192,11 +193,11 @@ public class DBHelper {
                 equipmentModel.setPK(cursor.getInt(0));
                 equipmentModel.setJOB(cursor.getInt(1));
                 equipmentModel.setNAME(cursor.getString(2));
-                equipmentModel.setHeadSkills(getEquipmentSkill(cursor.getString(3)));
-                equipmentModel.setThoraxSkills(getEquipmentSkill(cursor.getString(4)));
-                equipmentModel.setWristSkills(getEquipmentSkill(cursor.getString(5)));
-                equipmentModel.setWaistSkills(getEquipmentSkill(cursor.getString(6)));
-                equipmentModel.setLegSkills(getEquipmentSkill(cursor.getString(7)));
+                equipmentModel.setHeadSkills(getSkill(cursor.getString(3)));
+                equipmentModel.setThoraxSkills(getSkill(cursor.getString(4)));
+                equipmentModel.setWristSkills(getSkill(cursor.getString(5)));
+                equipmentModel.setWaistSkills(getSkill(cursor.getString(6)));
+                equipmentModel.setLegSkills(getSkill(cursor.getString(7)));
                 equipmentModel.setHoldNumberArrayList(getHoldNumberArrayList(cursor.getString(8)));
 
                 equipmentModelArrayList.add(equipmentModel);
@@ -212,7 +213,7 @@ public class DBHelper {
      * @param skillStr 套装的各个部位所拥有的技能
      * @return
      */
-    private HashMap<Integer, Integer> getEquipmentSkill(String skillStr) {
+    private HashMap<Integer, Integer> getSkill(String skillStr) {
         HashMap<Integer, Integer> skillHashMap = new HashMap<>();
         String[] skills = skillStr.split(",");
         for (int i = 0; i < skills.length; i++) {
@@ -228,12 +229,36 @@ public class DBHelper {
      * @param holdNumber
      * @return
      */
-    private ArrayList<String> getHoldNumberArrayList(String holdNumber) {
-        ArrayList<String> holdNumberArrayList = new ArrayList<>();
+    private ArrayList<Integer> getHoldNumberArrayList(String holdNumber) {
+        ArrayList<Integer> holdNumberArrayList = new ArrayList<>();
         String[] temp = holdNumber.split(",");
         for (int i = 0; i < temp.length; i++) {
-            holdNumberArrayList.add(temp[i]);
+            holdNumberArrayList.add(Integer.valueOf(temp[i]));
         }
         return holdNumberArrayList;
+    }
+
+    /**
+     * 获取技能珠信息
+     * @param gemModelArrayList
+     * @return
+     */
+    public ArrayList<GemModel> getGemInfo(ArrayList<GemModel> gemModelArrayList) {
+        gemModelArrayList.clear();
+        String sql = "select * from GEM";
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            do {
+                GemModel gemModel = new GemModel();
+                gemModel.setPK(cursor.getInt(0));
+                gemModel.setGEM_NAME(cursor.getString(1));
+                gemModel.setGEM_SKILLS(getSkill(cursor.getString(2)));
+                gemModel.setGEM_LEVEL(cursor.getInt(3));
+                gemModelArrayList.add(gemModel);
+            }while (cursor.moveToNext());
+        }
+
+        return gemModelArrayList;
     }
 }

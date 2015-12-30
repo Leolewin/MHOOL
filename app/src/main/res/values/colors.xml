@@ -3,4 +3,7 @@
     <color name="colorPrimary">#80deea</color>
     <color name="colorPrimaryDark">#00bcd4</color>
     <color name="colorAccent">#7cc8f3</color>
+
+    <color name="gem_title">#e7776d</color>
+
 </resources>

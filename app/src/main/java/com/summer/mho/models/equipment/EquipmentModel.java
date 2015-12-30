@@ -31,7 +31,7 @@ public class EquipmentModel implements Serializable{
     // 腿部技能一览
     private HashMap<Integer, Integer> legSkills;
     // 宝石插槽个数
-    private ArrayList<String> holdNumberArrayList;
+    private ArrayList<Integer> holdNumberArrayList;
 
     public int getPK() {
         return PK;
@@ -97,11 +97,11 @@ public class EquipmentModel implements Serializable{
         this.legSkills = legSkills;
     }
 
-    public ArrayList<String> getHoldNumberArrayList() {
+    public ArrayList<Integer> getHoldNumberArrayList() {
         return holdNumberArrayList;
     }
 
-    public void setHoldNumberArrayList(ArrayList<String> holdNumberArrayList) {
+    public void setHoldNumberArrayList(ArrayList<Integer> holdNumberArrayList) {
         this.holdNumberArrayList = holdNumberArrayList;
     }
 }

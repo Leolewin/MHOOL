@@ -2,68 +2,88 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="110px"
-    android:gravity="center_vertical"
     android:background="@android:color/holo_orange_light"
+    android:gravity="center_vertical"
     android:orientation="horizontal">
+
     <TextView
         android:id="@+id/text1"
         android:layout_width="150px"
         android:layout_height="100px"
         android:gravity="center"
-        android:text="技"/>
+        android:text="技"
+        android:textSize="40px" />
+
     <TextView
         android:id="@+id/text2"
         android:layout_width="70px"
         android:layout_height="100px"
         android:gravity="center"
-        android:text="头"/>
+        android:text="头"
+        android:textSize="40px" />
+
     <TextView
         android:id="@+id/text3"
         android:layout_width="70px"
         android:layout_height="100px"
         android:gravity="center"
-        android:text="胸"/>
+        android:text="胸"
+        android:textSize="40px" />
+
     <TextView
         android:id="@+id/text4"
         android:layout_width="70px"
         android:layout_height="100px"
         android:gravity="center"
-        android:text="腕"/>
+        android:text="腕"
+        android:textSize="40px" />
+
     <TextView
         android:id="@+id/text5"
         android:layout_width="70px"
         android:layout_height="100px"
         android:gravity="center"
-        android:text="腰"/>
+        android:text="腰"
+        android:textSize="40px" />
+
     <TextView
         android:id="@+id/text6"
         android:layout_width="70px"
         android:layout_height="100px"
         android:gravity="center"
-        android:text="腿"/>
+        android:text="腿"
+        android:textSize="40px" />
+
     <TextView
         android:id="@+id/text7"
         android:layout_width="70px"
         android:layout_height="100px"
         android:gravity="center"
-        android:text="珠"/>
+        android:text="珠"
+        android:textSize="40px" />
+
     <TextView
         android:id="@+id/text8"
         android:layout_width="70px"
         android:layout_height="100px"
         android:gravity="center"
-        android:text="护"/>
+        android:text="护"
+        android:textSize="40px" />
+
     <TextView
         android:id="@+id/text9"
         android:layout_width="70px"
         android:layout_height="100px"
         android:gravity="center"
-        android:text="总"/>
+        android:text="总"
+        android:textSize="40px" />
+
     <TextView
         android:id="@+id/text10"
-        android:layout_width="370px"
+        android:layout_width="330px"
         android:layout_height="100px"
         android:gravity="left|center_vertical"
         android:paddingRight="5px"
-        android:text="发动"/>
+        android:text="发动"
+        android:textSize="40px" />
 </com.zhy.autolayout.AutoLinearLayout>

@@ -1,5 +1,7 @@
 package com.summer.mho.main;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -20,6 +23,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.summer.mho.R;
 import com.summer.mho.base.BaseActivity;
+import com.summer.mho.gem.GemActivity;
 import com.summer.mho.models.equipment.EquipmentModel;
 import com.summer.mho.models.skill.Result;
 import com.summer.mho.models.skill.SkillModel;
@@ -29,6 +33,10 @@ import com.umeng.message.PushAgent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import cn.domob.android.ads.AdEventListener;
+import cn.domob.android.ads.AdManager;
+import cn.domob.android.ads.AdView;
 
 public class MainActivity extends BaseActivity implements OnClickListener{
 
@@ -53,7 +61,6 @@ public class MainActivity extends BaseActivity implements OnClickListener{
 
     // 技能下拉适配器
     private SkillSpinnerAdapter skillSpinnerAdapter = new SkillSpinnerAdapter(this, skillModelArrayList);
-    ;
 
     // 技能选择1
     @ViewInject(R.id.spinner1)
@@ -96,9 +103,20 @@ public class MainActivity extends BaseActivity implements OnClickListener{
     private Spinner leg;
     private HashMap<Integer, Integer> legInfo;
 
-    @ViewInject(R.id.jewelry)
-    private Spinner jewelry;
-    private HashMap<Integer, Integer> jewelryInfo;
+    @ViewInject(R.id.gem)
+    private TextView gem;
+    private HashMap<Integer, Integer> gemInfo = new HashMap<>();
+
+    @ViewInject(R.id.jewelry1)
+    private Spinner jewelry1;
+    private HashMap<Integer, Integer> jewelry1Info;
+
+    @ViewInject(R.id.jewelry2)
+    private Spinner jewelry2;
+    private HashMap<Integer, Integer> jewelry2Info;
+
+    // 装备部位宝石插槽数量集合,初始化为0
+    private int holderNumber = 0;
 
     // 筛选出的装备信息
     private ArrayList<EquipmentModel> equipmentModelArrayList = new ArrayList<>();
@@ -115,11 +133,11 @@ public class MainActivity extends BaseActivity implements OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ViewUtils.inject(this);
 
         PushAgent.getInstance(this).onAppStart();
 
-        ViewUtils.inject(this);
-
+        showAD();
         skillsSelected();
         initView();
 
@@ -197,6 +215,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 headInfo = ((EquipmentModel) parent.getItemAtPosition(position)).getHeadSkills();
+                holderNumber += ((EquipmentModel) parent.getItemAtPosition(position)).getHoldNumberArrayList().get(0);
                 setResultList();
             }
 
@@ -211,6 +230,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 thoraxInfo = ((EquipmentModel) parent.getItemAtPosition(position)).getThoraxSkills();
+                holderNumber += ((EquipmentModel) parent.getItemAtPosition(position)).getHoldNumberArrayList().get(1);
                 setResultList();
             }
 
@@ -224,6 +244,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 wristInfo = ((EquipmentModel) parent.getItemAtPosition(position)).getWristSkills();
+                holderNumber += ((EquipmentModel) parent.getItemAtPosition(position)).getHoldNumberArrayList().get(2);
                 setResultList();
             }
 
@@ -237,6 +258,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 waistInfo = ((EquipmentModel) parent.getItemAtPosition(position)).getWaistSkills();
+                holderNumber += ((EquipmentModel) parent.getItemAtPosition(position)).getHoldNumberArrayList().get(3);
                 setResultList();
             }
 
@@ -250,6 +272,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 legInfo = ((EquipmentModel) parent.getItemAtPosition(position)).getLegSkills();
+                holderNumber += ((EquipmentModel) parent.getItemAtPosition(position)).getHoldNumberArrayList().get(4);
                 setResultList();
             }
 
@@ -258,20 +281,44 @@ public class MainActivity extends BaseActivity implements OnClickListener{
                 legInfo = null;
             }
         });
-        jewelry.setAdapter(skillSpinnerAdapter);
-        jewelry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        gem.setOnClickListener(this);
+
+        jewelry1.setAdapter(skillSpinnerAdapter);
+        jewelry1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                jewelryPK = ((SkillModel) parent.getItemAtPosition(position)).getPK();
+                jewelry1PK = ((SkillModel) parent.getItemAtPosition(position)).getPK();
 
-                jewelryInfo = new HashMap<>();
-                jewelryInfo.put(((SkillModel) parent.getItemAtPosition(position)).getPK(), 0);
+                jewelry1Info = new HashMap<>();
+                jewelry1Info.put(((SkillModel) parent.getItemAtPosition(position)).getPK(), 0);
 
                 // 弹出popup
-                if (firstShowPopup) {
-                    showPopupToSelectJewelry((SkillModel) parent.getItemAtPosition(position));
+                if (firstShowPopup_1) {
+                    showPopupToSelectJewelry((SkillModel) parent.getItemAtPosition(position), 1);
                 }
-                firstShowPopup = true;
+                firstShowPopup_1 = true;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        jewelry2.setAdapter(skillSpinnerAdapter);
+        jewelry2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                jewelry2PK = ((SkillModel) parent.getItemAtPosition(position)).getPK();
+
+                jewelry2Info = new HashMap<>();
+                jewelry2Info.put(((SkillModel) parent.getItemAtPosition(position)).getPK(), 0);
+
+                // 弹出popup
+                if (firstShowPopup_2) {
+                    showPopupToSelectJewelry((SkillModel) parent.getItemAtPosition(position), 2);
+                }
+                firstShowPopup_2 = true;
             }
 
             @Override
@@ -281,17 +328,21 @@ public class MainActivity extends BaseActivity implements OnClickListener{
         });
     }
 
-    private boolean firstShowPopup = false;
+    // 控制护石选择popup,默认第一次不弹出
+    private boolean firstShowPopup_1 = false;
+    private boolean firstShowPopup_2 = false;
 
     // 护石加的技能PK
-    private int jewelryPK;
+    private int jewelry1PK;
+    // 护石加的技能PK
+    private int jewelry2PK;
 
     /**
      * 弹出画面选择护石属性
      *
      * @param skill 护石选择的技能信息
      */
-    private void showPopupToSelectJewelry(SkillModel skill) {
+    private void showPopupToSelectJewelry(SkillModel skill, final int num) {
         View view = LayoutInflater.from(this).inflate(R.layout.popup_window_layout, null);
         final PopupWindow popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         popupWindow.setFocusable(true);
@@ -308,7 +359,11 @@ public class MainActivity extends BaseActivity implements OnClickListener{
         ok.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                jewelryInfo.put(jewelryPK, Integer.valueOf(jewelryNumberEditText.getText().toString()));
+                if (num == 1) {
+                    jewelry1Info.put(jewelry1PK, Integer.valueOf(jewelryNumberEditText.getText().toString()));
+                } else {
+                    jewelry2Info.put(jewelry2PK, Integer.valueOf(jewelryNumberEditText.getText().toString()));
+                }
                 popupWindow.dismiss();
                 setResultList();
             }
@@ -350,9 +405,9 @@ public class MainActivity extends BaseActivity implements OnClickListener{
      */
     @Override
     public void onClick(View view) {
-        clearData();
         switch (view.getId()) {
             case R.id.checkBox1:
+                clearData();
                 checkBox1.setChecked(true);
                 checkBox2.setChecked(false);
                 isCloseCombat = 0;
@@ -365,6 +420,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
                 }
                 break;
             case R.id.checkBox2:
+                clearData();
                 checkBox1.setChecked(false);
                 checkBox2.setChecked(true);
                 isCloseCombat = 1;
@@ -378,6 +434,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
                 break;
             case R.id.checkbox_skill_2:
                 //TODO 判定是否被选中,如果被选中则查询双技能套装
+                clearData();
                 if (checkbox_skill_2.isChecked()) {
                     // 双技能
                     skill2Selected(skill_1.getEQUIPMENT(), skill_2.getEQUIPMENT());
@@ -385,6 +442,11 @@ public class MainActivity extends BaseActivity implements OnClickListener{
                     // 单技能
                     equipmentSelected(skill_1.getEQUIPMENT());
                 }
+                break;
+            case R.id.gem:
+                Intent intent = new Intent(MainActivity.this, GemActivity.class);
+                intent.putExtra("holderNumber", holderNumber);
+                startActivityForResult(intent, 0);
                 break;
             default:
         }
@@ -481,10 +543,24 @@ public class MainActivity extends BaseActivity implements OnClickListener{
                 }
             }
 
-            Object[] jewelryKeys = jewelryInfo.keySet().toArray();
-            for (int i = 0; i < jewelryKeys.length; i++) {
-                if (!keysArray.contains(jewelryKeys[i])) {
-                    keysArray.add((Integer) jewelryKeys[i]);
+            Object[] jewelry1Keys = jewelry1Info.keySet().toArray();
+            for (int i = 0; i < jewelry1Keys.length; i++) {
+                if (!keysArray.contains(jewelry1Keys[i])) {
+                    keysArray.add((Integer) jewelry1Keys[i]);
+                }
+            }
+
+            Object[] jewelry2Keys = jewelry2Info.keySet().toArray();
+            for (int i = 0; i < jewelry2Keys.length; i++) {
+                if (!keysArray.contains(jewelry2Keys[i])) {
+                    keysArray.add((Integer) jewelry2Keys[i]);
+                }
+            }
+
+            Object[] gemKeys = gemInfo.keySet().toArray();
+            for (int i = 0; i < gemKeys.length; i++) {
+                if (!keysArray.contains(gemKeys[i])) {
+                    keysArray.add((Integer) gemKeys[i]);
                 }
             }
 
@@ -518,8 +594,9 @@ public class MainActivity extends BaseActivity implements OnClickListener{
                     int c = wristInfo.get(pk) == null ? 0 : wristInfo.get(pk);
                     int d = waistInfo.get(pk) == null ? 0 : waistInfo.get(pk);
                     int e = legInfo.get(pk) == null ? 0 : legInfo.get(pk);
-                    int f = 0;
-                    int g = jewelryInfo.get(pk) == null ? 0 : jewelryInfo.get(pk);
+                    int f = gemInfo.get(pk) == null ? 0 : gemInfo.get(pk);
+                    int g = jewelry1Info.get(pk) == null ? 0 : jewelry1Info.get(pk);
+                    int h = jewelry2Info.get(pk) == null ? 0 : jewelry2Info.get(pk);
 
 
                     text2.setText(String.valueOf(a));
@@ -528,9 +605,9 @@ public class MainActivity extends BaseActivity implements OnClickListener{
                     text5.setText(String.valueOf(d));
                     text6.setText(String.valueOf(e));
                     text7.setText(String.valueOf(f));
-                    text8.setText(String.valueOf(g));
+                    text8.setText(String.valueOf(g+h));
                     // 总技能点
-                    int total = a + b + c + d + e + f + g;
+                    int total = a + b + c + d + e + f + g + h;
                     text9.setText(String.valueOf(total));
 
                     // 判断当前技能和为什么效果
@@ -600,5 +677,69 @@ public class MainActivity extends BaseActivity implements OnClickListener{
 
 
     // 广告相关
+    @ViewInject(R.id.ad_layout)
+    private RelativeLayout ad_layout;
 
+    private AdView adView;
+
+    private void showAD() {
+        adView = new AdView(this, "56OJ2oOIuNwtwqy74p", "16TLPUloApSdSNUUv_WITfvi");
+        adView.setKeyword("game");
+        adView.setUserGender("male");
+        adView.setUserBirthdayStr("1988-06-07");
+        adView.setUserPostcode("116000");
+        adView.setAdEventListener(new AdEventListener() {
+            @Override
+            public void onEventAdReturned(AdView adView) {
+
+            }
+
+            @Override
+            public void onAdFailed(AdView adView, AdManager.ErrorCode errorCode) {
+
+            }
+
+            @Override
+            public void onAdOverlayPresented(AdView adView) {
+
+            }
+
+            @Override
+            public void onAdOverlayDismissed(AdView adView) {
+
+            }
+
+            @Override
+            public void onLeaveApplication(AdView adView) {
+
+            }
+
+            @Override
+            public void onAdClicked(AdView adView) {
+
+            }
+
+            @Override
+            public Context onAdRequiresCurrentContext() {
+                return null;
+            }
+        });
+
+        ad_layout.addView(adView);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 0:
+                if (resultCode == RESULT_OK) {
+                    // 处理宝石信息
+                    gemInfo = (HashMap<Integer, Integer>) data.getSerializableExtra("resultData");
+                    setResultList();
+                }
+                break;
+        }
+    }
 }
