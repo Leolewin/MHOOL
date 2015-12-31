@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion '23.0.2'
 
     defaultConfig {
         applicationId "com.summer.mho"
@@ -23,8 +23,14 @@ android {
             shrinkResources true
 
             // 混淆
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets{
+        main{
+            jniLibs.srcDir(['libs'])
         }
     }
 }
@@ -36,7 +42,9 @@ dependencies {
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile files('libs/umeng-analytics-v5.5.3.jar')
     compile files('libs/com.umeng.message.lib_v2.6.0.jar')
-    compile 'com.android.support:support-v4:23.1.1'
     compile 'com.android.support:appcompat-v7:23.1.1'
-    compile files('libs/domob_android_sdk.jar')
+    compile 'com.android.support:support-v4:23.1.1'
+    compile files('libs/Adwo_Android_SDK6.2.jar')
+    compile files('libs/google-play-services.jar')
+    compile files('libs/HapticMediaSync-v1.4.10.jar')
 }

@@ -21,7 +21,6 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.VIBRATE" />
 
     <!-- 【必选】用以设置前台是否显示通知 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
@@ -40,7 +39,11 @@
 
     <uses-permission android:name="com.umeng.message.example.permission.MIPUSH_RECEIVE" />
 
-    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- 安沃权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
 
     <application
         android:name=".application.MyApplication"
@@ -51,6 +54,7 @@
         android:theme="@style/MyAppTheme">
         <activity
             android:name=".startloading.StartLoadingActivity"
+            android:hardwareAccelerated="true"
             android:theme="@style/MyAppThemeNoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,7 +64,12 @@
         </activity>
         <activity
             android:name=".main.MainActivity"
+            android:hardwareAccelerated="true"
             android:label="@string/main_activity_title" />
+        <activity
+            android:name=".gem.GemActivity"
+            android:hardwareAccelerated="true"
+            android:label="@string/gem_activity_title"></activity>
 
         <!-- Nexus5 -->
         <meta-data
@@ -204,11 +213,8 @@
             android:name="UMENG_CHANNEL"
             android:value="All" />
 
-        <!-- 多盟广告 -->
-        <activity
-            android:name="cn.domob.android.ads.DmActivity"
-            android:theme="@android:style/Theme.Translucent" />
-        <activity android:name=".gem.GemActivity"></activity>
+        <!-- 安沃广告 -->
+        <meta-data android:name="com.google.android.gms.version" android:value="5077000" />
     </application>
 
 </manifest>

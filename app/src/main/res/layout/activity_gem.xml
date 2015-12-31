@@ -46,8 +46,8 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:gravity="center"
-                    android:singleLine="true"
                     android:inputType="number"
+                    android:singleLine="true"
                     android:text="0" />
             </RelativeLayout>
 
@@ -73,8 +73,8 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:gravity="center"
-                    android:singleLine="true"
                     android:inputType="number"
+                    android:singleLine="true"
                     android:text="0" />
             </RelativeLayout>
 
@@ -100,8 +100,8 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:gravity="center"
-                    android:singleLine="true"
                     android:inputType="number"
+                    android:singleLine="true"
                     android:text="0" />
             </RelativeLayout>
 
@@ -127,8 +127,8 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:gravity="center"
-                    android:singleLine="true"
                     android:inputType="number"
+                    android:singleLine="true"
                     android:text="0" />
             </RelativeLayout>
 
@@ -154,8 +154,8 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:gravity="center"
-                    android:singleLine="true"
                     android:inputType="number"
+                    android:singleLine="true"
                     android:text="0" />
             </RelativeLayout>
 
@@ -181,9 +181,11 @@
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
+
     <RelativeLayout
         android:id="@+id/ad_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"></RelativeLayout>
+        android:layout_alignParentBottom="true">
+    </RelativeLayout>
 </RelativeLayout>

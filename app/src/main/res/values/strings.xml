@@ -3,6 +3,7 @@
 
     <!-- Activity title -->
     <string name="main_activity_title">配装</string>
+    <string name="gem_activity_title">宝石搭配</string>
 
 
     <!-- 退出Alert -->

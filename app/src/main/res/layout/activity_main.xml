@@ -224,12 +224,13 @@
                         android:layout_alignParentRight="true"
                         android:spinnerMode="dialog" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:id="@+id/jewelry2_layout"
                     android:layout_width="500px"
                     android:layout_height="150px"
-                    android:layout_below="@id/gem_layout"
                     android:layout_alignParentRight="true"
+                    android:layout_below="@id/gem_layout"
                     android:orientation="horizontal">
 
                     <TextView
@@ -274,5 +275,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:gravity="center"></RelativeLayout>
+        android:gravity="center">
+
+    </RelativeLayout>
 </RelativeLayout>

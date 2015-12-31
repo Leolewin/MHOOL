@@ -25,51 +25,25 @@
 -keep public class * extends android.app.Activity      # 保持哪些类不被混淆
 -keep public class * extends android.app.Application   # 保持哪些类不被混淆
 -keep public class * extends android.app.Service       # 保持哪些类不被混淆
--keep public class * extends android.content.BroadcastReceiver  # 保持哪些类不被混淆
+-keep public class * extends android.content.BroadcastReceiver
 -keep public class * extends android.content.ContentProvider    # 保持哪些类不被混淆
 -keep public class * extends android.app.backup.BackupAgentHelper # 保持哪些类不被混淆
 -keep public class * extends android.preference.Preference        # 保持哪些类不被混淆
 -keep public class com.android.vending.licensing.ILicensingService    # 保持哪些类不被混淆
 
--keepclasseswithmembernames class * {  # 保持 native 方法不被混淆
-    native <methods>;
-}
--keepclasseswithmembers class * {   # 保持自定义控件类不被混淆
-    public <init>(android.content.Context, android.util.AttributeSet);
-}
--keepclasseswithmembers class * {# 保持自定义控件类不被混淆
-    public <init>(android.content.Context, android.util.AttributeSet, int);
-}
--keepclassmembers class * extends android.app.Activity { # 保持自定义控件类不被混淆
-    public void *(android.view.View);
-}
--keep class * implements android.os.Parcelable { # 保持 Parcelable 不被混淆
-    public static final android.os.Parcelable$Creator *;
-}
+#声明第三方jar包
 
-#友盟统计
+# 友盟统计混淆
 -keepclassmembers class * {
-   public <init>(org.json.JSONObject);
+    public <init>(org.json.JSONObject);
 }
 -keep public class com.summer.mho.R$*{
-public static final int *;
+    public static final int *;
 }
 -keepclassmembers enum * {
     public static **[] values();
     public static ** valueOf(java.lang.String);
 }
-
-#### -- Support Library --
-# support-v4
--dontwarn android.support.v4.**
--keep class android.support.v4.app.** { *; }
--keep interface android.support.v4.app.** { *; }
-# support-v7
--dontwarn android.support.v7.**
--keep class android.support.v7.internal.** { *; }
--keep interface android.support.v7.internal.** { *; }
--keepattributes *Annotation*
-
 #友盟推送
 -keep class com.umeng.message.* {
         public <fields>;
@@ -103,4 +77,43 @@ public static final int *;
 
 -keep class org.android.spdy.**{*;}
 
--libraryjars libs/domob_android_sdk.jar
+#以下已在上边混淆过
+#-keep public class [应用包名].R$*{
+#    public static final int *;
+#}
+
+#xUtils混淆
+-keep class * extends java.lang.annotation.Annotation { *; }
+
+#安沃广告
+-dontwarn com.sixth.adwoad.**
+-dontwarn com.google.android.gms.**
+-dontwarn com.immersion.hapticmedia.**
+
+-keep class com.sixth.adwoad.** { *; }
+
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet);
+}
+
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+
+-keepclassmembers class * extends android.app.Activity {
+   public void *(android.view.View);
+}
+
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+-keep class * implements android.os.Parcelable {
+  public static final android.os.Parcelable$Creator *;
+}
+

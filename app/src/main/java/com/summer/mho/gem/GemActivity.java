@@ -1,6 +1,5 @@
 package com.summer.mho.gem;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.sixth.adwoad.AdwoAdView;
 import com.summer.mho.R;
 import com.summer.mho.base.BaseActivity;
 import com.summer.mho.models.gem.GemModel;
@@ -27,10 +28,6 @@ import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import cn.domob.android.ads.AdEventListener;
-import cn.domob.android.ads.AdManager;
-import cn.domob.android.ads.AdView;
 
 public class GemActivity extends BaseActivity implements OnClickListener{
 
@@ -413,51 +410,9 @@ public class GemActivity extends BaseActivity implements OnClickListener{
     @ViewInject(R.id.ad_layout)
     private RelativeLayout ad_layout;
 
-    private AdView adView;
-
     private void showAD() {
-        adView = new AdView(this, "56OJ2oOIuNwtwqy74p", "16TLPUloApSdSNUUv_WITfvi");
-        adView.setKeyword("game");
-        adView.setUserGender("male");
-        adView.setUserBirthdayStr("1988-06-07");
-        adView.setUserPostcode("116000");
-        adView.setAdEventListener(new AdEventListener() {
-            @Override
-            public void onEventAdReturned(AdView adView) {
-
-            }
-
-            @Override
-            public void onAdFailed(AdView adView, AdManager.ErrorCode errorCode) {
-
-            }
-
-            @Override
-            public void onAdOverlayPresented(AdView adView) {
-
-            }
-
-            @Override
-            public void onAdOverlayDismissed(AdView adView) {
-
-            }
-
-            @Override
-            public void onLeaveApplication(AdView adView) {
-
-            }
-
-            @Override
-            public void onAdClicked(AdView adView) {
-
-            }
-
-            @Override
-            public Context onAdRequiresCurrentContext() {
-                return null;
-            }
-        });
-
-        ad_layout.addView(adView);
+        AdwoAdView adwoAdView = new AdwoAdView(this, "2c74632a76b44a2c83158e13c42b8c6b", true, 40);
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ad_layout.addView(adwoAdView, layoutParams);
     }
 }
