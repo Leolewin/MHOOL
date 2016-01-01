@@ -13,87 +13,44 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20px">
-
-            <CheckBox
-                android:id="@+id/checkBox1"
-                android:layout_width="200px"
-                android:layout_height="100px"
-                android:layout_alignParentLeft="true"
-                android:text="近战" />
-
-            <CheckBox
-                android:id="@+id/checkBox2"
-                android:layout_width="200px"
-                android:layout_height="100px"
-                android:layout_alignParentRight="true"
-                android:text="远程" />
-
+            android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:id="@+id/skill_1_layout"
-                android:layout_width="500px"
-                android:layout_height="150px"
-                android:layout_below="@+id/checkBox1"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:layout_width="100px"
-                    android:layout_height="150px"
-                    android:checked="true"
-                    android:enabled="false" />
-
-                <Spinner
-                    android:id="@+id/spinner1"
-                    android:layout_width="400px"
-                    android:layout_height="150px"
-                    android:layout_alignParentRight="true"
-                    android:spinnerMode="dialog" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/skill_2_layout"
-                android:layout_width="500px"
-                android:layout_height="150px"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/checkBox2"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/checkbox_skill_2"
-                    android:layout_width="100px"
-                    android:layout_height="150px" />
-
-                <Spinner
-                    android:id="@+id/spinner2"
-                    android:layout_width="400px"
-                    android:layout_height="150px"
-                    android:layout_alignParentRight="true"
-                    android:spinnerMode="dialog" />
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:id="@+id/selected"
+                android:id="@+id/top_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/skill_1_layout">
+                android:layout_margin="20px">
+
+                <CheckBox
+                    android:id="@+id/checkBox1"
+                    android:layout_width="200px"
+                    android:layout_height="100px"
+                    android:layout_alignParentLeft="true"
+                    android:text="近战" />
+
+                <CheckBox
+                    android:id="@+id/checkBox2"
+                    android:layout_width="200px"
+                    android:layout_height="100px"
+                    android:layout_alignParentRight="true"
+                    android:text="远程" />
+
 
                 <RelativeLayout
-                    android:id="@+id/head_layout"
+                    android:id="@+id/skill_1_layout"
                     android:layout_width="500px"
                     android:layout_height="150px"
+                    android:layout_below="@+id/checkBox1"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <CheckBox
                         android:layout_width="100px"
                         android:layout_height="150px"
-                        android:gravity="center"
-                        android:text="头" />
+                        android:checked="true"
+                        android:enabled="false" />
 
                     <Spinner
-                        android:id="@+id/head"
+                        android:id="@+id/spinner1"
                         android:layout_width="400px"
                         android:layout_height="150px"
                         android:layout_alignParentRight="true"
@@ -101,41 +58,20 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/thorax_layout"
+                    android:id="@+id/skill_2_layout"
                     android:layout_width="500px"
                     android:layout_height="150px"
                     android:layout_alignParentRight="true"
+                    android:layout_below="@+id/checkBox2"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <CheckBox
+                        android:id="@+id/checkbox_skill_2"
                         android:layout_width="100px"
-                        android:layout_height="150px"
-                        android:gravity="center"
-                        android:text="胸" />
+                        android:layout_height="150px" />
 
                     <Spinner
-                        android:id="@+id/thorax"
-                        android:layout_width="400px"
-                        android:layout_height="150px"
-                        android:layout_alignParentRight="true"
-                        android:spinnerMode="dialog" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/wrist_layout"
-                    android:layout_width="500px"
-                    android:layout_height="150px"
-                    android:layout_below="@id/head_layout"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="100px"
-                        android:layout_height="150px"
-                        android:gravity="center"
-                        android:text="腕" />
-
-                    <Spinner
-                        android:id="@+id/wrist"
+                        android:id="@+id/spinner2"
                         android:layout_width="400px"
                         android:layout_height="150px"
                         android:layout_alignParentRight="true"
@@ -144,107 +80,177 @@
 
 
                 <RelativeLayout
-                    android:id="@+id/waist_layout"
-                    android:layout_width="500px"
-                    android:layout_height="150px"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@id/thorax_layout"
-                    android:orientation="horizontal">
+                    android:id="@+id/selected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/skill_1_layout">
 
-                    <TextView
-                        android:layout_width="100px"
+                    <RelativeLayout
+                        android:id="@+id/head_layout"
+                        android:layout_width="500px"
                         android:layout_height="150px"
-                        android:gravity="center"
-                        android:text="腰" />
+                        android:orientation="horizontal">
 
-                    <Spinner
-                        android:id="@+id/waist"
-                        android:layout_width="400px"
-                        android:layout_height="150px"
-                        android:layout_alignParentRight="true"
-                        android:spinnerMode="dialog" />
-                </RelativeLayout>
+                        <TextView
+                            android:layout_width="100px"
+                            android:layout_height="150px"
+                            android:gravity="center"
+                            android:text="头" />
 
-                <RelativeLayout
-                    android:id="@+id/leg_layout"
-                    android:layout_width="500px"
-                    android:layout_height="150px"
-                    android:layout_below="@id/wrist_layout"
-                    android:orientation="horizontal">
+                        <Spinner
+                            android:id="@+id/head"
+                            android:layout_width="400px"
+                            android:layout_height="150px"
+                            android:layout_alignParentRight="true"
+                            android:spinnerMode="dialog" />
+                    </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="100px"
-                        android:layout_height="150px"
-                        android:gravity="center"
-                        android:text="腿" />
-
-                    <Spinner
-                        android:id="@+id/leg"
-                        android:layout_width="400px"
+                    <RelativeLayout
+                        android:id="@+id/thorax_layout"
+                        android:layout_width="500px"
                         android:layout_height="150px"
                         android:layout_alignParentRight="true"
-                        android:spinnerMode="dialog" />
-                </RelativeLayout>
+                        android:orientation="horizontal">
 
-                <RelativeLayout
-                    android:id="@+id/gem_layout"
-                    android:layout_width="500px"
-                    android:layout_height="150px"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@id/waist_layout"
-                    android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="100px"
+                            android:layout_height="150px"
+                            android:gravity="center"
+                            android:text="胸" />
 
-                    <TextView
-                        android:id="@+id/gem"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentRight="true"
-                        android:background="@null"
-                        android:gravity="center"
-                        android:text="宝珠选择" />
-                </RelativeLayout>
+                        <Spinner
+                            android:id="@+id/thorax"
+                            android:layout_width="400px"
+                            android:layout_height="150px"
+                            android:layout_alignParentRight="true"
+                            android:spinnerMode="dialog" />
+                    </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/jewelry1_layout"
-                    android:layout_width="500px"
-                    android:layout_height="150px"
-                    android:layout_below="@id/leg_layout"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="100px"
+                    <RelativeLayout
+                        android:id="@+id/wrist_layout"
+                        android:layout_width="500px"
                         android:layout_height="150px"
-                        android:gravity="center"
-                        android:text="护1" />
+                        android:layout_below="@id/head_layout"
+                        android:orientation="horizontal">
 
-                    <Spinner
-                        android:id="@+id/jewelry1"
-                        android:layout_width="400px"
-                        android:layout_height="150px"
-                        android:layout_alignParentRight="true"
-                        android:spinnerMode="dialog" />
-                </RelativeLayout>
+                        <TextView
+                            android:layout_width="100px"
+                            android:layout_height="150px"
+                            android:gravity="center"
+                            android:text="腕" />
 
-                <RelativeLayout
-                    android:id="@+id/jewelry2_layout"
-                    android:layout_width="500px"
-                    android:layout_height="150px"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@id/gem_layout"
-                    android:orientation="horizontal">
+                        <Spinner
+                            android:id="@+id/wrist"
+                            android:layout_width="400px"
+                            android:layout_height="150px"
+                            android:layout_alignParentRight="true"
+                            android:spinnerMode="dialog" />
+                    </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="100px"
-                        android:layout_height="150px"
-                        android:gravity="center"
-                        android:text="护2" />
 
-                    <Spinner
-                        android:id="@+id/jewelry2"
-                        android:layout_width="400px"
+                    <RelativeLayout
+                        android:id="@+id/waist_layout"
+                        android:layout_width="500px"
                         android:layout_height="150px"
                         android:layout_alignParentRight="true"
-                        android:spinnerMode="dialog" />
+                        android:layout_below="@id/thorax_layout"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="100px"
+                            android:layout_height="150px"
+                            android:gravity="center"
+                            android:text="腰" />
+
+                        <Spinner
+                            android:id="@+id/waist"
+                            android:layout_width="400px"
+                            android:layout_height="150px"
+                            android:layout_alignParentRight="true"
+                            android:spinnerMode="dialog" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/leg_layout"
+                        android:layout_width="500px"
+                        android:layout_height="150px"
+                        android:layout_below="@id/wrist_layout"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="100px"
+                            android:layout_height="150px"
+                            android:gravity="center"
+                            android:text="腿" />
+
+                        <Spinner
+                            android:id="@+id/leg"
+                            android:layout_width="400px"
+                            android:layout_height="150px"
+                            android:layout_alignParentRight="true"
+                            android:spinnerMode="dialog" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/gem_layout"
+                        android:layout_width="500px"
+                        android:layout_height="150px"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/waist_layout"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/gem"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:background="@null"
+                            android:gravity="center"
+                            android:text="宝珠选择" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/jewelry1_layout"
+                        android:layout_width="500px"
+                        android:layout_height="150px"
+                        android:layout_below="@id/leg_layout"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="100px"
+                            android:layout_height="150px"
+                            android:gravity="center"
+                            android:text="护1" />
+
+                        <Spinner
+                            android:id="@+id/jewelry1"
+                            android:layout_width="400px"
+                            android:layout_height="150px"
+                            android:layout_alignParentRight="true"
+                            android:spinnerMode="dialog" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/jewelry2_layout"
+                        android:layout_width="500px"
+                        android:layout_height="150px"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/gem_layout"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="100px"
+                            android:layout_height="150px"
+                            android:gravity="center"
+                            android:text="护2" />
+
+                        <Spinner
+                            android:id="@+id/jewelry2"
+                            android:layout_width="400px"
+                            android:layout_height="150px"
+                            android:layout_alignParentRight="true"
+                            android:spinnerMode="dialog" />
+                    </RelativeLayout>
                 </RelativeLayout>
             </RelativeLayout>
 
@@ -252,7 +258,7 @@
                 android:id="@+id/title_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/selected">
+                android:layout_below="@id/top_layout">
 
                 <include layout="@layout/result_item_layout"></include>
             </RelativeLayout>
